@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: studysync-backend
+    ports:
+      - "5000:5000" # Expose backend API on port 5000
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/studysync # MongoDB connection (update as needed)
+      - JWT_SECRET=your-jwt-secret
+    depends_on:
+      - mongo # Wait for MongoDB to be ready
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend/study-sync-app
+      dockerfile: Dockerfile
+    container_name: studysync-frontend
+    ports:
+      - "8080:80" # Expose frontend app on port 8080
+    depends_on:
+      - backend # Ensure the backend is ready before the frontend starts
+
+  # MongoDB service for backend
+  mongo:
+    image: mongo:latest
+    container_name: studysync-mongo
+    volumes:
+      - mongo-data:/data/db # Persist MongoDB data
+    ports:
+      - "27017:27017" # Expose MongoDB on default port
+
+volumes:
+  mongo-data:
+    driver: local

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Catering Event Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        #navbar {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #navbar a {
+            flex: 1 1 20%;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+        }
+        #navbar a:hover {
+            background-color: #575757;
+        }
+        #search-bar {
+            margin: 20px auto;
+            display: block;
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .menu-category {
+            margin-top: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-name {
+            font-weight: bold;
+        }
+        .item-flavor {
+            font-style: italic;
+            color: #666;
+        }
+        .item-price {
+            color: #4CAF50;
+        }
+        .menu-title {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #book-now {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #4CAF50;
+            text-align: center;
+            text-decoration: none;
+            width: 150px;
+            border-radius: 5px;
+        }
+        #book-now:hover {
+            background-color: #45a049;
+        }
+        .event-menu {
+            display: none;
+        }
+    </style>
+    <script>
+        function showMenu(eventType) {
+            document.querySelectorAll('.event-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            document.getElementById(eventType).style.display = 'block';
+        }
+
+        function searchMenu() {
+            const query = document.getElementById("search-bar").value.toLowerCase();
+            const items = document.querySelectorAll(".menu-item");
+
+            items.forEach(item => {
+                const itemName = item.querySelector(".item-name").textContent.toLowerCase();
+                if (itemName.includes(query)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Indian Catering Event Menu</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="Search for a menu item..." onkeyup="searchMenu()">
+
+    <!-- Navigation Bar -->
+    <div id="navbar">
+        <a href="javascript:void(0);" onclick="showMenu('birthday-menu')">Birthday Parties</a>
+        <a href="javascript:void(0);" onclick="showMenu('wedding-menu')">Weddings</a>
+        <a href="javascript:void(0);" onclick="showMenu('corporate-menu')">Corporate Events</a>
+        <a href="javascript:void(0);" onclick="showMenu('graduation-menu')">Graduations</a>
+        <a href="javascript:void(0);" onclick="showMenu('housewarming-menu')">Housewarming</a>
+        <a href="javascript:void(0);" onclick="showMenu('anniversary-menu')">Anniversaries</a>
+        <a href="javascript:void(0);" onclick="showMenu('baby-shower-menu')">Baby Showers</a>
+        <a href="javascript:void(0);" onclick="showMenu('farewell-menu')">Farewells</a>
+        <a href="javascript:void(0);" onclick="showMenu('festival-menu')">Festivals</a>
+        <a href="javascript:void(0);" onclick="showMenu('engagement-menu')">Engagements</a>
+    </div>
+
+    <!-- Event Menus -->
+    <!-- Birthday Party Menu -->
+    <div id="birthday-menu" class="event-menu">
+        <h2 class="menu-title">Birthday Party Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Paneer Tikka</span><span class="item-flavor">Spiced with tangy yogurt and chili</span><span class="item-price">₹200</span></div>
+            <!-- Additional items here -->
+        </div>
+        <a href="https://www.booking.com" id="book-now">Book Birthday Party</a>
+    </div>
+
+    <!-- Wedding Menu -->
+    <div id="wedding-menu" class="event-menu">
+        <h2 class="menu-title">Wedding Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Paneer Butter Masala</span><span class="item-flavor">Creamy, tomato-based with spices</span><span class="item-price">₹280</span></div>
+            <!-- Additional items here -->
+        </div>
+        <a href="https://www.booking.com" id="book-now">Book Wedding</a>
+    </div>
+
+    <!-- Corporate Menu -->
+    <div id="corporate-menu" class="event-menu">
+        <h2 class="menu-title">Corporate Event Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Stuffed Mushrooms</span><span class="item-flavor">Filled with cheese and spices</span><span class="item-price">₹250</span></div>
+            <!-- Additional items here -->
+        </div>
+        <a href="https://www.booking.com" id="book-now">Book Corporate Event</a>
+    </div>
+
+    <!-- Festival Menu -->
+    <div id="festival-menu" class="event-menu">
+        <h2 class="menu-title">Festival Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Dahi Puri</span><span class="item-flavor">Crispy puris with yogurt and spices</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Paneer Pakoda</span><span class="item-flavor">Paneer fried with a spicy batter</span><span class="item-price">₹200</span></div>
+            <!-- Additional items here -->
+        </div>
+        <a href="https://www.booking.com" id="book-now">Book Festival Event</a>
+    </div>
+
+    <!-- Engagement Menu -->
+    <div id="engagement-menu" class="event-menu">
+        <h2 class="menu-title">Engagement Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Hara Bhara Kebab</span><span class="item-flavor">Spinach and green peas patty</span><span class="item-price">₹220</span></div>
+            <div class="menu-item"><span class="item-name">Fish Tikka</span><span class="item-flavor">Marinated fish grilled to perfection</span><span class="item-price">₹350</span></div>
+            <!-- Additional items here -->
+        </div>
+        <a href="https://www.booking.com" id="book-now">Book Engagement</a>
+    </div>
+
+</body>
+</html>

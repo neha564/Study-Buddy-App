@@ -1,0 +1,46 @@
+{
+  "name": "studysync-app",
+  "version": "1.0.0",
+  "description": "StudySync is a suite of tools that help students study more effectively.",
+  "scripts": {
+    "start": "cd frontend/study-sync-app && npm run serve",
+    "dev": "cd frontend/study-sync-app && npm run serve",
+    "format": "prettier --write .",
+    "test": "cd frontend/study-sync-app && npm run serve",
+    "frontend": "cd frontend/study-sync-app && npm run serve",
+    "backend": "cd backend && npm start"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangsonww/StudySync-Study-Buddy-App.git"
+  },
+  "keywords": [
+    "StudySync",
+    "Study Buddy",
+    "Study App",
+    "Study Tools"
+  ],
+  "author": "Son Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hoangsonww/StudySync-Study-Buddy-App.git/issues",
+    "email": "hoangson091104@gmail.com"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@vue/cli-service": "^5.0.8",
+    "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

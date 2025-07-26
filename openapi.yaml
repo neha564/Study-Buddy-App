@@ -1,0 +1,258 @@
+openapi: 3.0.0
+info:
+  title: StudySync API
+  version: 1.0.0
+  description: API documentation for the StudySync app
+  contact:
+    name: Son Nguyen
+    email: hoangson091104@gmail.com
+servers:
+  - url: https://studysync-study-buddy-app.onrender.com
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: Bad request
+  /api/auth/login:
+    post:
+      summary: Login a user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Login successful
+        "401":
+          description: Invalid credentials
+  /api/auth/verify-email:
+    post:
+      summary: Verify if an email exists in the system
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        "200":
+          description: Email exists
+        "404":
+          description: Email not found
+  /api/auth/reset-password:
+    post:
+      summary: Reset password for a verified email
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        "200":
+          description: Password reset successfully
+        "400":
+          description: Invalid request
+  /api/profile/{userId}:
+    get:
+      summary: Get user profile by userId
+      tags:
+        - User
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User profile retrieved
+        "404":
+          description: User not found
+  /api/profile:
+    put:
+      summary: Update user profile
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfile"
+      responses:
+        "200":
+          description: Profile updated successfully
+  /api/search:
+    get:
+      summary: Search for profiles by name
+      tags:
+        - User
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Profiles found
+        "404":
+          description: No profiles found
+  /api/groups:
+    post:
+      summary: Create a new study group
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupName:
+                  type: string
+                description:
+                  type: string
+      responses:
+        "201":
+          description: Group created successfully
+  /api/groups/{groupId}/sessions:
+    post:
+      summary: Create a study session within a group
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionName:
+                  type: string
+                description:
+                  type: string
+      responses:
+        "201":
+          description: Session created successfully
+  /api/music:
+    get:
+      summary: Get music recommendations based on search term
+      tags:
+        - Music
+      parameters:
+        - name: searchTerm
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Music recommendations retrieved
+        "404":
+          description: No recommendations found
+  /api/ai-chat:
+    post:
+      summary: Chat with AI service
+      tags:
+        - AI Chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      responses:
+        "200":
+          description: AI response generated
+  /api/weather:
+    get:
+      summary: Get current weather data for a specific city
+      tags:
+        - Weather
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Weather data retrieved
+        "404":
+          description: City not found
+  /api/cities:
+    get:
+      summary: Get city suggestions based on a search query
+      tags:
+        - Cities
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: City suggestions retrieved
+        "404":
+          description: No cities found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    UserProfile:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        bio:
+          type: string

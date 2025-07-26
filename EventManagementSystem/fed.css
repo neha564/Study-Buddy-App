@@ -1,0 +1,193 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #3a8d99, #3c7a89);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 600px;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+/* Form Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #4CAF50;
+    background-color: #e9f5e9;
+    outline: none;
+}
+
+/* Textarea Style */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Star Rating Styling */
+.rating {
+    display: inline-block;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 40px;
+    color: #ccc;
+    transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.star.filled {
+    color: #ffcc00; /* Yellow */
+}
+
+.star:hover,
+.star:hover ~ .star {
+    color: #ffcc00;
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+/* Hidden input field to store the rating value */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Submit Button Styles */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Button hover effect */
+}
+
+.submit-btn:active {
+    background-color: #388e3c;
+    transform: translateY(2px); /* Button press effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        width: 85%;
+        padding: 25px;
+    }
+
+    .star {
+        font-size: 35px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .star {
+        font-size: 30px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+}
+
+/* Focused Input Field Border Effect */
+input:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Success Message */
+h2 {
+    color: #28a745;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+
+
+

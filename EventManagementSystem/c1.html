@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Catering Event Menu</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            background-color: #f4b41a;
+            color: white;
+            padding: 10px 0;
+        }
+        #navbar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: #333;
+            padding: 10px;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        #navbar a:hover {
+            background-color: #f4b41a;
+        }
+        .event-menu {
+            display: none;
+            padding: 20px;
+        }
+        .menu-category {
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .menu-item label {
+            flex: 1;
+        }
+        .menu-item span {
+            margin-left: 10px;
+        }
+        #search-bar {
+            width: 80%;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #total-container {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        #book-order {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #f4b41a;
+            border: none;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        #book-order:hover {
+            background-color: #e0a819;
+        }
+    </style>
+    <script>
+        function showMenu(eventType) {
+            document.querySelectorAll('.event-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            document.getElementById(eventType).style.display = 'block';
+        }
+
+        function searchMenu() {
+            const query = document.getElementById("search-bar").value.toLowerCase();
+            const items = document.querySelectorAll(".menu-item");
+
+            items.forEach(item => {
+                const itemName = item.querySelector(".item-name").textContent.toLowerCase();
+                if (itemName.includes(query)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const selectedItems = document.querySelectorAll('.menu-item input[type="checkbox"]:checked');
+            const selectedNames = [];
+            selectedItems.forEach(item => {
+                const price = parseInt(item.dataset.price);
+                total += price;
+                selectedNames.push(item.nextElementSibling.textContent);
+            });
+            document.getElementById('total-container').textContent = `Total: ₹${total}`;
+            return { total, selectedNames };
+        }
+        function bookOrder() {
+            const { total, selectedNames } = calculateTotal();
+            if (selectedNames.length === 0) {
+                alert("Please select at least one item to book your order.");
+                return;
+            }
+           const orderDetails = {
+        selectedItems: selectedNames,
+        totalAmount: total
+    };
+
+    localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+    // Redirect to the order confirmation page
+    window.location.href = 'order-confirmation1.php';
+}
+
+    </script>
+</head>
+<body>
+    <h1>Indian Catering Event Menu</h1>
+    <input type="text" id="search-bar" placeholder="Search for a menu item..." onkeyup="searchMenu()">
+    <div id="navbar">
+        <a href="javascript:void(0);" onclick="showMenu('birthday-menu')">Birthday Party</a>
+        <a href="javascript:void(0);" onclick="showMenu('wedding-menu')">Wedding</a>
+        <a href="javascript:void(0);" onclick="showMenu('corporate-menu')">Corporate</a>
+        <a href="javascript:void(0);" onclick="showMenu('festival-menu')">Festivals</a>
+        <a href="javascript:void(0);" onclick="showMenu('reunion-menu')">Reunion</a>
+        <a href="javascript:void(0);" onclick="showMenu('engagement-menu')">Engagement</a>
+        <a href="javascript:void(0);" onclick="showMenu('babyshower-menu')">Baby Shower</a>
+        <a href="javascript:void(0);" onclick="showMenu('anniversary-menu')">Anniversary</a>
+        <a href="javascript:void(0);" onclick="showMenu('graduation-menu')">Graduation</a>
+        <a href="javascript:void(0);" onclick="showMenu('housewarming-menu')">Housewarming</a>
+    </div>
+
+    <!-- Event Menus -->
+    <!-- Birthday Party Menu -->
+    <div id="birthday-menu" class="event-menu">
+        <h2>Birthday Party Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Mini Pizza</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Balls</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Spring Rolls</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Pani Puri</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="130" onchange="calculateTotal()">
+                    <span class="item-name">Chaat</span>
+                </label>
+                <span class="item-price">₹130</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="160" onchange="calculateTotal()">
+                    <span class="item-name">Vegetable Pakoras</span>
+                </label>
+                <span class="item-price">₹160</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Veg Manchurian</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Butter Masala</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="240" onchange="calculateTotal()">
+                    <span class="item-name">Dal Tadka</span>
+                </label>
+                <span class="item-price">₹240</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="230" onchange="calculateTotal()">
+                    <span class="item-name">Aloo Gobi</span>
+                </label>
+                <span class="item-price">₹230</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="280" onchange="calculateTotal()">
+                    <span class="item-name">Kadhai Paneer</span>
+                </label>
+                <span class="item-price">₹280</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Chocolate Cake</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Ice Cream</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Gulab Jamun</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="130" onchange="calculateTotal()">
+                    <span class="item-name">Ras Malai</span>
+                </label>
+                <span class="item-price">₹130</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="80" onchange="calculateTotal()">
+                    <span class="item-name">Mango Shake</span>
+                </label>
+                <span class="item-price">₹80</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Lemonade</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="70" onchange="calculateTotal()">
+                    <span class="item-name">Cold Coffee</span>
+                </label>
+                <span class="item-price">₹70</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="90" onchange="calculateTotal()">
+                    <span class="item-name">Mint Mojito</span>
+                </label>
+                <span class="item-price">₹90</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wedding Menu -->
+    <div id="wedding-menu" class="event-menu">
+        <h2>Wedding Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Tandoori Chicken</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Tikka</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Samosa</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Hara Bhara Kebab</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="240" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Pakoras</span>
+                </label>
+                <span class="item-price">₹240</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Butter Chicken</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Mutton Rogan Josh</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="270" onchange="calculateTotal()">
+                    <span class="item-name">Fish Curry</span>
+                </label>
+                <span class="item-price">₹270</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Gulab Jamun</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Kheer</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Carrot Halwa</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Mint Mojito</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="90" onchange="calculateTotal()">
+                    <span class="item-name">Iced Tea</span>
+                </label>
+                <span class="item-price">₹90</span>
+            </div>
+        </div>
+    </div>
+    <!-- Festivals Menu -->
+    <div id="festival-menu" class="event-menu">
+        <h2>Festival Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Samosa</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Chana Chaat</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Pani Puri</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="240" onchange="calculateTotal()">
+                    <span class="item-name">Pakoras</span>
+                </label>
+                <span class="item-price">₹240</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="260" onchange="calculateTotal()">
+                    <span class="item-name">Aloo Gobi</span>
+                </label>
+                <span class="item-price">₹260</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="270" onchange="calculateTotal()">
+                    <span class="item-name">Pulao</span>
+                </label>
+                <span class="item-price">₹270</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="280" onchange="calculateTotal()">
+                    <span class="item-name">Biryani</span>
+                </label>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Butter Chicken</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Gulab Jamun</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Rasgulla</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Kheer</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Lassi</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Mint Lemonade</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reunion Menu -->
+    <div id="reunion-menu" class="event-menu">
+        <h2>Reunion Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Spring Rolls</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="160" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Pakoras</span>
+                </label>
+                <span class="item-price">₹160</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Aloo Tikki</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Veg Kathi Roll</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Veg Pulao</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="270" onchange="calculateTotal()">
+                    <span class="item-name">Kadhi Pakora</span>
+                </label>
+                <span class="item-price">₹270</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="280" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Butter Masala</span>
+                </label>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="290" onchange="calculateTotal()">
+                    <span class="item-name">Tandoori Roti</span>
+                </label>
+                <span class="item-price">₹290</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Ras Malai</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Jalebi</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="90" onchange="calculateTotal()">
+                    <span class="item-name">Cold Drink</span>
+                </label>
+                <span class="item-price">₹90</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Mint Cooler</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+        </div>
+    </div>
+     <!-- Corporate Menu -->
+    <div id="corporate-menu" class="event-menu">
+        <h2>Corporate Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Veg Spring Rolls</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Tikka</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="270" onchange="calculateTotal()">
+                    <span class="item-name">Chana Chaat</span>
+                </label>
+                <span class="item-price">₹270</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Balls</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Butter Masala</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="380" onchange="calculateTotal()">
+                    <span class="item-name">Pulao</span>
+                </label>
+                <span class="item-price">₹380</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="400" onchange="calculateTotal()">
+                    <span class="item-name">Butter Chicken</span>
+                </label>
+                <span class="item-price">₹400</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Rasgulla</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Gulab Jamun</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="80" onchange="calculateTotal()">
+                    <span class="item-name">Mint Lemonade</span>
+                </label>
+                <span class="item-price">₹80</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Coffee</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engagement Menu -->
+    <div id="engagement-menu" class="event-menu">
+        <h2>Engagement Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Samosa</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="170" onchange="calculateTotal()">
+                    <span class="item-name">Spring Rolls</span>
+                </label>
+                <span class="item-price">₹170</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Tandoori Veg</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Pakora</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Butter Masala</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Veg Biryani</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="280" onchange="calculateTotal()">
+                    <span class="item-name">Dal Tadka</span>
+                </label>
+                <span class="item-price">₹280</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Ras Malai</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Jalebi</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Mint Cooler</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Cold Drink</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+        </div>
+    </div>
+     <!-- Baby Shower Menu -->
+    <div id="babyshower-menu" class="event-menu">
+        <h2>Baby Shower Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Vegetable Croquettes</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Tikka</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Samosa</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Butter Masala</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Veg Pulao</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Dal Makhani</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Chocolate Mousse</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Rasgulla</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="80" onchange="calculateTotal()">
+                    <span class="item-name">Mango Lassi</span>
+                </label>
+                <span class="item-price">₹80</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Iced Tea</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+        </div>
+    </div>
+
+     <!-- Anniversary Menu -->
+    <div id="anniversary-menu" class="event-menu">
+        <h2>Anniversary Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Balls</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Spring Rolls</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Prawn Koliwada</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Papad Rolls</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Vegetable Pakoras</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Paneer Tikka Masala</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Chicken Biryani</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Aloo Gobi</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="320" onchange="calculateTotal()">
+                    <span class="item-name">Mutton Rogan Josh</span>
+                </label>
+                <span class="item-price">₹320</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="380" onchange="calculateTotal()">
+                    <span class="item-name">Lamb Shank Curry</span>
+                </label>
+                <span class="item-price">₹380</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Gulab Jamun</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Lemon Cake</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Ras Malai</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Fruit Cake</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="90" onchange="calculateTotal()">
+                    <span class="item-name">Masala Chai</span>
+                </label>
+                <span class="item-price">₹90</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Mango Lassi</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Peach Iced Tea</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Sparkling Water</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graduation Menu -->
+    <div id="graduation-menu" class="event-menu">
+        <h2>Graduation Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Cheese Stuffed Mushrooms</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="250" onchange="calculateTotal()">
+                    <span class="item-name">Crispy Chilli Potatoes</span>
+                </label>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="230" onchange="calculateTotal()">
+                    <span class="item-name">Pav Bhaji</span>
+                </label>
+                <span class="item-price">₹230</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Pasta Primavera</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="400" onchange="calculateTotal()">
+                    <span class="item-name">Chicken Tikka Masala</span>
+                </label>
+                <span class="item-price">₹400</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Vegetable Biryani</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Tiramisu</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Carrot Cake</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="90" onchange="calculateTotal()">
+                    <span class="item-name">Lemonade</span>
+                </label>
+                <span class="item-price">₹90</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Peach Iced Tea</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Housewarming Menu -->
+    <div id="housewarming-menu" class="event-menu">
+        <h2>Housewarming Menu</h2>
+        <div class="menu-category">
+            <h3>Appetizers</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="180" onchange="calculateTotal()">
+                    <span class="item-name">Bruschetta</span>
+                </label>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="200" onchange="calculateTotal()">
+                    <span class="item-name">Stuffed Paneer Rolls</span>
+                </label>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="220" onchange="calculateTotal()">
+                    <span class="item-name">Vegetable Cutlets</span>
+                </label>
+                <span class="item-price">₹220</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Kadhai Paneer</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="350" onchange="calculateTotal()">
+                    <span class="item-name">Lamb Rogan Josh</span>
+                </label>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="300" onchange="calculateTotal()">
+                    <span class="item-name">Butter Chicken</span>
+                </label>
+                <span class="item-price">₹300</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="150" onchange="calculateTotal()">
+                    <span class="item-name">Mango Sticky Rice</span>
+                </label>
+                <span class="item-price">₹150</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="120" onchange="calculateTotal()">
+                    <span class="item-name">Fruit Tart</span>
+                </label>
+                <span class="item-price">₹120</span>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Beverages</h3>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="100" onchange="calculateTotal()">
+                    <span class="item-name">Chilled Coffee</span>
+                </label>
+                <span class="item-price">₹100</span>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" data-price="110" onchange="calculateTotal()">
+                    <span class="item-name">Soda</span>
+                </label>
+                <span class="item-price">₹110</span>
+            </div>
+        </div>
+    </div>
+     <!-- Total Price -->
+    <div id="total-container">
+        Total: ₹0
+    </div>
+
+    <!-- Book Order Button -->
+    <button id="book-order" onclick="bookOrder()">Book Order</button>
+
+</body>
+</html>
+
+    
+

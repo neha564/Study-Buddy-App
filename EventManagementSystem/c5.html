@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Catering Event Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        #navbar {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #navbar a {
+            flex: 1 1 20%;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+        }
+        #navbar a:hover {
+            background-color: #575757;
+        }
+        #search-bar {
+            margin: 20px auto;
+            display: block;
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .menu-category {
+            margin-top: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-name {
+            font-weight: bold;
+        }
+        .item-flavor {
+            font-style: italic;
+            color: #666;
+        }
+        .item-price {
+            color: #4CAF50;
+        }
+        .menu-title {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #book-now {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #4CAF50;
+            text-align: center;
+            text-decoration: none;
+            width: 150px;
+            border-radius: 5px;
+        }
+        #book-now:hover {
+            background-color: #45a049;
+        }
+        .event-menu {
+            display: none;
+        }
+    </style>
+    <script>
+        function showMenu(eventType) {
+            document.querySelectorAll('.event-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            document.getElementById(eventType).style.display = 'block';
+        }
+
+        function searchMenu() {
+            const query = document.getElementById("search-bar").value.toLowerCase();
+            const items = document.querySelectorAll(".menu-item");
+
+            items.forEach(item => {
+                const itemName = item.querySelector(".item-name").textContent.toLowerCase();
+                if (itemName.includes(query)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Indian Catering Event Menu</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="Search for a menu item..." onkeyup="searchMenu()">
+
+    <!-- Navigation Bar -->
+    <div id="navbar">
+        <a href="javascript:void(0);" onclick="showMenu('birthday-menu')">Birthday Parties</a>
+        <a href="javascript:void(0);" onclick="showMenu('wedding-menu')">Weddings</a>
+        <a href="javascript:void(0);" onclick="showMenu('corporate-menu')">Corporate Events</a>
+        <a href="javascript:void(0);" onclick="showMenu('graduation-menu')">Graduations</a>
+        <a href="javascript:void(0);" onclick="showMenu('housewarming-menu')">Housewarming</a>
+        <a href="javascript:void(0);" onclick="showMenu('anniversary-menu')">Anniversaries</a>
+        <a href="javascript:void(0);" onclick="showMenu('baby-shower-menu')">Baby Showers</a>
+        <a href="javascript:void(0);" onclick="showMenu('farewell-menu')">Farewells</a>
+        <a href="javascript:void(0);" onclick="showMenu('festival-menu')">Festivals</a>
+        <a href="javascript:void(0);" onclick="showMenu('engagement-menu')">Engagements</a>
+    </div>
+
+    <!-- Event Menus with Starters, Main Courses, and Desserts -->
+    <div id="birthday-menu" class="event-menu">
+        <h2 class="menu-title">Birthday Party Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Paneer Tikka</span><span class="item-flavor">Spiced with tangy yogurt and chili</span><span class="item-price">₹200</span></div>
+            <div class="menu-item"><span class="item-name">Samosas</span><span class="item-flavor">Crispy with savory potato filling</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Chaat</span><span class="item-flavor">Sweet, sour, and spicy</span><span class="item-price">₹180</span></div>
+            <div class="menu-item"><span class="item-name">Pani Puri</span><span class="item-flavor">Crisp, spicy, and tangy</span><span class="item-price">₹120</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Biryani</span><span class="item-flavor">Aromatic basmati rice with spices</span><span class="item-price">₹300</span></div>
+            <div class="menu-item"><span class="item-name">Butter Chicken</span><span class="item-flavor">Rich tomato and butter sauce</span><span class="item-price">₹350</span></div>
+            <div class="menu-item"><span class="item-name">Dal Makhani</span><span class="item-flavor">Creamy black lentils with spices</span><span class="item-price">₹200</span></div>
+            <div class="menu-item"><span class="item-name">Chole Bhature</span><span class="item-flavor">Spicy chickpeas with fluffy bread</span><span class="item-price">₹250</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Gulab Jamun</span><span class="item-flavor">Soft, syrupy sweetness</span><span class="item-price">₹100</span></div>
+            <div class="menu-item"><span class="item-name">Jalebi</span><span class="item-flavor">Crisp with a sugary twist</span><span class="item-price">₹80</span></div>
+            <div class="menu-item"><span class="item-name">Rasmalai</span><span class="item-flavor">Soft cheese in creamy milk</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Birthday Party</a>
+    </div>
+
+    <div id="wedding-menu" class="event-menu">
+        <h2 class="menu-title">Wedding Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Paneer Butter Masala</span><span class="item-flavor">Creamy, tomato-based with spices</span><span class="item-price">₹280</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Tikka</span><span class="item-flavor">Marinated with spices, grilled</span><span class="item-price">₹300</span></div>
+            <div class="menu-item"><span class="item-name">Vegetable Spring Rolls</span><span class="item-flavor">Crispy with a mix of veggies</span><span class="item-price">₹180</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Chicken Curry</span><span class="item-flavor">Spicy with traditional flavors</span><span class="item-price">₹300</span></div>
+            <div class="menu-item"><span class="item-name">Pulao</span><span class="item-flavor">Fragrant with cardamom and saffron</span><span class="item-price">₹180</span></div>
+            <div class="menu-item"><span class="item-name">Palak Paneer</span><span class="item-flavor">Creamy spinach with paneer</span><span class="item-price">₹240</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Kheer</span><span class="item-flavor">Creamy rice pudding with nuts</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Mysore Pak</span><span class="item-flavor">Sweet made of gram flour and ghee</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Wedding</a>
+    </div>
+
+    <div id="corporate-menu" class="event-menu">
+        <h2 class="menu-title">Corporate Event Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Stuffed Mushrooms</span><span class="item-flavor">Filled with cheese and spices</span><span class="item-price">₹250</span></div>
+            <div class="menu-item"><span class="item-name">Onion Bhaji</span><span class="item-flavor">Crispy fried onion fritters</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Mixed Vegetable Curry</span><span class="item-flavor">Seasonal vegetables in gravy</span><span class="item-price">₹220</span></div>
+            <div class="menu-item"><span class="item-name">Biryani</span><span class="item-flavor">Rich, spiced rice with vegetables</span><span class="item-price">₹320</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Fruit Salad</span><span class="item-flavor">Fresh seasonal fruits</span><span class="item-price">₹100</span></div>
+            <div class="menu-item"><span class="item-name">Ras Malai</span><span class="item-flavor">Soft cheese in sweet milk</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Corporate Event</a>
+    </div>
+
+    <div id="graduation-menu" class="event-menu">
+        <h2 class="menu-title">Graduation Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Vegetable Pakora</span><span class="item-flavor">Crispy and spicy fritters</span><span class="item-price">₹160</span></div>
+            <div class="menu-item"><span class="item-name">Mini Pizzas</span><span class="item-flavor">Topped with vegetables and cheese</span><span class="item-price">₹200</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Paneer Butter Masala</span><span class="item-flavor">Rich and creamy with spices</span><span class="item-price">₹300</span></div>
+            <div class="menu-item"><span class="item-name">Vegetable Fried Rice</span><span class="item-flavor">Stir-fried rice with veggies</span><span class="item-price">₹220</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Brownies</span><span class="item-flavor">Rich chocolate flavor</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Ice Cream</span><span class="item-flavor">Creamy and delightful</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Graduation</a>
+    </div>
+
+    <div id="housewarming-menu" class="event-menu">
+        <h2 class="menu-title">Housewarming Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Kebab Platter</span><span class="item-flavor">A mix of chicken and vegetable kebabs</span><span class="item-price">₹350</span></div>
+            <div class="menu-item"><span class="item-name">Paneer Tikka</span><span class="item-flavor">Marinated paneer grilled to perfection</span><span class="item-price">₹220</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Aloo Gobi</span><span class="item-flavor">Spicy potato and cauliflower</span><span class="item-price">₹180</span></div>
+            <div class="menu-item"><span class="item-name">Methi Malai Murg</span><span class="item-flavor">Creamy fenugreek chicken</span><span class="item-price">₹350</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Gajar Halwa</span><span class="item-flavor">Sweet carrot dessert with nuts</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Barfi</span><span class="item-flavor">Indian fudge with various flavors</span><span class="item-price">₹120</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Housewarming</a>
+    </div>
+
+    <div id="anniversary-menu" class="event-menu">
+        <h2 class="menu-title">Anniversary Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Prawn Koliwada</span><span class="item-flavor">Spicy fried prawns</span><span class="item-price">₹400</span></div>
+            <div class="menu-item"><span class="item-name">Vegetable Spring Rolls</span><span class="item-flavor">Crispy with a mix of veggies</span><span class="item-price">₹180</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Paneer Tikka Masala</span><span class="item-flavor">Grilled paneer in rich gravy</span><span class="item-price">₹300</span></div>
+            <div class="menu-item"><span class="item-name">Dal Tadka</span><span class="item-flavor">Spiced yellow lentils</span><span class="item-price">₹200</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Ladoo</span><span class="item-flavor">Sweet balls made of gram flour</span><span class="item-price">₹100</span></div>
+            <div class="menu-item"><span class="item-name">Kulfi</span><span class="item-flavor">Traditional Indian ice cream</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Anniversary</a>
+    </div>
+
+    <div id="baby-shower-menu" class="event-menu">
+        <h2 class="menu-title">Baby Shower Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Mini Samosas</span><span class="item-flavor">Stuffed with potatoes and peas</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Spinach and Cheese Balls</span><span class="item-flavor">Crispy and cheesy</span><span class="item-price">₹150</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Khichdi</span><span class="item-flavor">Comforting rice and lentil dish</span><span class="item-price">₹180</span></div>
+            <div class="menu-item"><span class="item-name">Vegetable Biryani</span><span class="item-flavor">Spiced rice with seasonal vegetables</span><span class="item-price">₹250</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Chocolate Mousse</span><span class="item-flavor">Rich and creamy dessert</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Fruit Custard</span><span class="item-flavor">Delicious mix of fruits in custard</span><span class="item-price">₹120</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Baby Shower</a>
+    </div>
+
+    <div id="farewell-menu" class="event-menu">
+        <h2 class="menu-title">Farewell Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Tandoori Chicken</span><span class="item-flavor">Spicy grilled chicken</span><span class="item-price">₹350</span></div>
+            <div class="menu-item"><span class="item-name">Vegetable Tempura</span><span class="item-flavor">Crispy battered vegetables</span><span class="item-price">₹180</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Lamb Rogan Josh</span><span class="item-flavor">Slow-cooked with aromatic spices</span><span class="item-price">₹400</span></div>
+            <div class="menu-item"><span class="item-name">Paneer Bhurji</span><span class="item-flavor">Scrambled paneer with spices</span><span class="item-price">₹240</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Chenna Payesh</span><span class="item-flavor">Creamy rice and cheese pudding</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Mango Lassi</span><span class="item-flavor">Refreshing yogurt drink</span><span class="item-price">₹100</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Farewell</a>
+    </div>
+
+    <div id="festival-menu" class="event-menu">
+        <h2 class="menu-title">Festival Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Dahi Puri</span><span class="item-flavor">Crispy puris with yogurt and spices</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Paneer Pakoda</span><span class="item-flavor">Crispy paneer fritters</span><span class="item-price">₹200</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Rajma</span><span class="item-flavor">Spicy kidney beans in gravy</span><span class="item-price">₹220</span></div>
+            <div class="menu-item"><span class="item-name">Aloo Palak</span><span class="item-flavor">Potatoes and spinach curry</span><span class="item-price">₹180</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Peda</span><span class="item-flavor">Milk fudge with cardamom</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Chakli</span><span class="item-flavor">Crispy spirals of rice flour</span><span class="item-price">₹100</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Festival</a>
+    </div>
+
+    <div id="engagement-menu" class="event-menu">
+        <h2 class="menu-title">Engagement Menu</h2>
+        
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span class="item-name">Veg Kebab</span><span class="item-flavor">Spiced vegetable patties</span><span class="item-price">₹250</span></div>
+            <div class="menu-item"><span class="item-name">Chili Chicken</span><span class="item-flavor">Spicy chicken tossed with peppers</span><span class="item-price">₹300</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Main Courses</h3>
+            <div class="menu-item"><span class="item-name">Bhindi Masala</span><span class="item-flavor">Spiced okra dish</span><span class="item-price">₹200</span></div>
+            <div class="menu-item"><span class="item-name">Mutton Curry</span><span class="item-flavor">Tender mutton in rich gravy</span><span class="item-price">₹400</span></div>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span class="item-name">Pistachio Burfi</span><span class="item-flavor">Sweet with pistachios</span><span class="item-price">₹150</span></div>
+            <div class="menu-item"><span class="item-name">Sooji Halwa</span><span class="item-flavor">Sweet semolina dessert</span><span class="item-price">₹120</span></div>
+        </div>
+
+        <a href="https://www.booking.com" id="book-now">Book Engagement</a>
+    </div>
+
+</body>
+</html>

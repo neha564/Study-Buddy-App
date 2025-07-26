@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concert Gallery</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff; /* White background */
+      color: #333333; /* Dark text for readability */
+    }
+
+    /* Page Heading */
+    .heading {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: violet; /* Heading color */
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    /* Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    /* Image Cards */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      background-color: #ffffff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+      border-radius: 8px;
+    }
+
+    /* Details Section */
+    .details {
+      padding: 15px;
+    }
+
+    .price {
+      font-size: 1.8rem; /* Larger font size for price */
+      color: #27ae60; /* Green color for price */
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .rating {
+      margin: 5px 0;
+      font-size: 1.2rem;
+      color: #f1c40f; /* Yellow for star rating */
+    }
+
+    .checkout-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 20px; /* Increased padding for larger button */
+      background-color: #2980b9; /* Blue button */
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.2rem; /* Increased font size for button */
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background-color: #1c5987;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Heading -->
+  <div class="heading">
+    Concert Gallery
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="concert1.jpg" alt="Concert 1">
+      <div class="details">
+        <p class="price">₹5,000</p>
+        <p class="rating">★★★★★</p>
+         <a href="booking_form.php?event=Wedding+Decoration+1&price=5000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert2.jpg" alt="Concert 2">
+      <div class="details">
+        <p class="price">₹7,000</p>
+        <p class="rating">★★★★☆</p>
+         <a href="booking_form.php?event=Wedding+Decoration+2&price=7000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert3.jpg" alt="Concert 3">
+      <div class="details">
+        <p class="price">₹8,500</p>
+        <p class="rating">★★★★★</p>
+         <a href="booking_form.php?event=Wedding+Decoration+3&price=8500" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert4.jpg" alt="Concert 4">
+      <div class="details">
+        <p class="price">₹6,000</p>
+        <p class="rating">★★★☆☆</p>
+         <a href="booking_form.php?event=Wedding+Decoration+4&price=6000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert5.jpg" alt="Concert 5">
+      <div class="details">
+        <p class="price">₹10,000</p>
+        <p class="rating">★★★★★</p>
+         <a href="booking_form.php?event=Wedding+Decoration+5&price=10000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert6.jpg" alt="Concert 6">
+      <div class="details">
+        <p class="price">₹12,000</p>
+        <p class="rating">★★★★☆</p>
+         <a href="booking_form.php?event=Wedding+Decoration+6&price=12000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert7.jpg" alt="Concert 7">
+      <div class="details">
+        <p class="price">₹15,000</p>
+        <p class="rating">★★★★★</p>
+         <a href="booking_form.php?event=Wedding+Decoration+7&price=15000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert8.jpg" alt="Concert 8">
+      <div class="details">
+        <p class="price">₹18,000</p>
+        <p class="rating">★★★★☆</p>
+         <a href="booking_form.php?event=Wedding+Decoration+8&price=18000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert9.jpg" alt="Concert 9">
+      <div class="details">
+        <p class="price">₹20,000</p>
+        <p class="rating">★★★★★</p>
+         <a href="booking_form.php?event=Wedding+Decoration+9&price=20000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="concert10.jpg" alt="Concert 10">
+      <div class="details">
+        <p class="price">₹22,000</p>
+        <p class="rating">★★★★☆</p>
+         <a href="booking_form.php?event=Wedding+Decoration+10&price=22000" class="checkout-btn">Check Out</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
