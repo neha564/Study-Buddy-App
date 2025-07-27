@@ -1,6 +1,6 @@
-# StudySync - A Productivity and Study Companion App
+# StudyBuddy - A Productivity and Study Companion App
 
-Welcome to **StudySync**! StudySync is a productivity and study tool designed to help users stay organized and efficient, built with **Vue and Express**. It includes a variety of features such as Pomodoro timers, music recommendations, weather checks, flashcards, to-do lists, and AI chat assistance. It integrates third-party services like Spotify for music and OpenWeather for weather data.
+Welcome to **StudyBuddy**! StudyBuddy is a productivity and study tool designed to help users stay organized and efficient, built with **Vue and Express**. It includes a variety of features such as Pomodoro timers, music recommendations, weather checks, flashcards, to-do lists, and AI chat assistance. It integrates third-party services like Spotify for music and OpenWeather for weather data.
 
 ## Table of Contents
 
