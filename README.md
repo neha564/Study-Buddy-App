@@ -2,34 +2,7 @@
 
 Welcome to **StudyBuddy**! StudyBuddy is a productivity and study tool designed to help users stay organized and efficient, built with **Vue and Express**. It includes a variety of features such as Pomodoro timers, music recommendations, weather checks, flashcards, to-do lists, and AI chat assistance. It integrates third-party services like Spotify for music and OpenWeather for weather data.
 
-## Table of Contents
 
-- [Features](#features)
-- [Live Deployment](#live-deployment)
-- [UI Screenshots](#ui-screenshots)
-  - [Home Page (Dashboard)](#home-page-dashboard)
-  - [Tools List](#tools-list)
-  - [Login Page](#login-page)
-  - [Register Page](#register-page)
-  - [Profile Page](#profile-page)
-  - [404 Page](#404-page)
-  - [Footer](#footer)
-- [Tech Stack](#tech-stack)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-  - [DevOps & Deployment](#devops--deployment)
-- [Getting Started](#getting-started)
-- [File Structure](#file-structure)
-- [API Documentation](#api-documentation)
-  - [Table of API Endpoints](#table-of-api-endpoints)
-  - [Backend Swagger Documentation](#backend-swagger-documentation)
-  - [OpenAPI Specification](#openapi-specification)
-  - [Example of calling the Music Recommendation API](#example-of-calling-the-music-recommendation-api)
-  - [Authentication](#authentication)
-- [NGINX Configuration](#nginx-configuration)
-- [Docker Configuration](#docker-configuration)
-  - [Building the Docker Containers](#building-the-docker-containers)
-- [The Creator](#the-creator)
 
 ## Features
 
